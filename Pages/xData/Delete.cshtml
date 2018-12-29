@@ -1,0 +1,118 @@
+@page
+@model ge_repository.Pages.xData.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ge_data</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.filename)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.filename)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.filesize)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.filesize)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.filetype)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.filetype)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.filedate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.filedate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.keywords)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.keywords)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.project)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.project.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.cstatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.cstatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.pstatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.pstatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.locMapReference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.locMapReference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.locEast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.locEast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.locNorth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.locNorth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.created)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.createdId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.createdDT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.createdDT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.editedDT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.editedDT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_data.edited)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_data.edited.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="ge_data.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,57 @@
+@page
+@model ge_repository.Pages.Transform.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>ge_transform</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ge_transform.projectId" class="control-label"></label>
+                <input asp-for="ge_transform.projectId" class ="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_transform.name" class="control-label"></label>
+                <input asp-for="ge_transform.name" class="form-control" />
+                <span asp-validation-for="ge_transform.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_transform.description" class="control-label"></label>
+                <input asp-for="ge_transform.description" class="form-control" />
+                <span asp-validation-for="ge_transform.description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_transform.dataId" class="control-label"></label>
+                <select asp-for="ge_transform.dataId" class ="form-control" asp-items="ViewBag.dataId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_transform.styleId" class="control-label"></label>
+                <select asp-for="ge_transform.styleId" class ="form-control" asp-items="ViewBag.styleId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_transform.createdId" class="control-label"></label>
+                <input asp-for="ge_transform.createdId" class ="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_transform.createdDT" class="control-label"></label>
+                <input asp-for="ge_transform.createdDT" class="form-control" />
+                <span asp-validation-for="ge_transform.createdDT" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

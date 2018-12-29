@@ -1,0 +1,171 @@
+@page
+@model ge_repository.Pages.Project.DetailDataIndexModel
+
+@{
+    ViewData["Title"] = "Ground Engineering Project Details";
+}
+
+<h2>Ground Engineering Project Details</h2>
+
+<div>
+    <h4>ge_project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.keywords)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.keywords)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.start_date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.start_date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.end_date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.end_date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.createdDT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.createdDT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.pstatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.pstatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.createdId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.createdId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.locMapReference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.locMapReference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.locEast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.locEast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model._ge_project.locNorth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model._ge_project.locNorth)
+        </dd>
+    </dl>
+</div>
+<div>
+<!--     <a asp-page="./Edit" asp-route-id="@Model._ge_project.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a> -->
+</div>
+@if (Model._ge_project.pstatus != Constants.PublishStatus.Approved)
+{
+    @if ((await AuthorizationService.AuthorizeAsync(
+     User, Model._ge_project, ge_repositoryOperations.Approve)).Succeeded)
+    {
+        <form style="display:inline;" method="post">
+            <input type="hidden" name="id" value="@Model._ge_project.Id" />
+            <input type="hidden" name="status" value="@Constants.PublishStatus.Approved" />
+            <button type="submit" class="btn btn-xs btn-success">ApproveProject</button>
+        </form>
+    }
+}
+
+@if (Model._ge_project.pstatus != Constants.PublishStatus.Uncontrolled)
+{
+    @if ((await AuthorizationService.AuthorizeAsync(
+     User, Model._ge_project, ge_repositoryOperations.Approve)).Succeeded)
+    {
+        <form style="display:inline;" method="post">
+            <input type="hidden" name="id" value="@Model._ge_project.Id" />
+            <input type="hidden" name="status" value="@Constants.PublishStatus.Uncontrolled" />
+            <button type="submit" class="btn btn-xs btn-success">UncontrolledProject</button>
+        </form>
+    }
+}
+
+<div>
+    @if ((await AuthorizationService.AuthorizeAsync(
+         User, Model._ge_project,
+         ge_repositoryOperations.Update)).Succeeded)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model._ge_project.Id">Edit</a>
+        <text> | </text>
+        <a asp-page="../Data/Create" asp-route-projectId="@Model._ge_project.Id">Add Data</a>
+        <text> | </text>
+        <a asp-page="../Transform/Create" asp-route-id="@Model._ge_project.Id">Add Transform</a>
+        <text> | </text>
+    }
+    <a asp-page="./Index">Back to All Project List</a>
+</div>
+
+<h3>Ground Engineering Uploaded Data</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model._ge_data[0].filename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._ge_data[0].createdDT)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model._ge_data[0].filesize)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model._ge_data[0].filesize)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model._ge_data) {
+        <tr>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.filename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createdDT)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.filesize)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.filesize)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

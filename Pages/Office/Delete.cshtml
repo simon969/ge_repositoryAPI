@@ -1,0 +1,118 @@
+@page
+@model ge_repository.Pages.xOffice.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ge_office</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.locAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.locAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.locPostcode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.locPostcode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.manager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.manager.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.locMapReference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.locMapReference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.locEast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.locEast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.locNorth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.locNorth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.locLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.locLevel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.locLatitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.locLatitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.locLongitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.locLongitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.locHeight)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.locHeight)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.created)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.created.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.createdDT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.createdDT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.editedDT)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.editedDT)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.edited)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.edited.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ge_office.folder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ge_office.folder)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="ge_office.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

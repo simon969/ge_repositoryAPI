@@ -1,0 +1,103 @@
+@page
+@model ge_repository.Pages.xData.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>ge_data</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ge_data.filename" class="control-label"></label>
+                <input asp-for="ge_data.filename" class="form-control" />
+                <span asp-validation-for="ge_data.filename" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.filesize" class="control-label"></label>
+                <input asp-for="ge_data.filesize" class="form-control" />
+                <span asp-validation-for="ge_data.filesize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.filetype" class="control-label"></label>
+                <input asp-for="ge_data.filetype" class="form-control" />
+                <span asp-validation-for="ge_data.filetype" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.filedate" class="control-label"></label>
+                <input asp-for="ge_data.filedate" class="form-control" />
+                <span asp-validation-for="ge_data.filedate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.description" class="control-label"></label>
+                <input asp-for="ge_data.description" class="form-control" />
+                <span asp-validation-for="ge_data.description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.keywords" class="control-label"></label>
+                <input asp-for="ge_data.keywords" class="form-control" />
+                <span asp-validation-for="ge_data.keywords" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.projectId" class="control-label"></label>
+                <select asp-for="ge_data.projectId" class ="form-control" asp-items="ViewBag.projectId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.cstatus" class="control-label"></label>
+                <select asp-for="ge_data.cstatus" class="form-control"></select>
+                <span asp-validation-for="ge_data.cstatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.pstatus" class="control-label"></label>
+                <select asp-for="ge_data.pstatus" class="form-control"></select>
+                <span asp-validation-for="ge_data.pstatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.locMapReference" class="control-label"></label>
+                <input asp-for="ge_data.locMapReference" class="form-control" />
+                <span asp-validation-for="ge_data.locMapReference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.locEast" class="control-label"></label>
+                <input asp-for="ge_data.locEast" class="form-control" />
+                <span asp-validation-for="ge_data.locEast" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.locNorth" class="control-label"></label>
+                <input asp-for="ge_data.locNorth" class="form-control" />
+                <span asp-validation-for="ge_data.locNorth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.createdId" class="control-label"></label>
+                <select asp-for="ge_data.createdId" class ="form-control" asp-items="ViewBag.createdId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.createdDT" class="control-label"></label>
+                <input asp-for="ge_data.createdDT" class="form-control" />
+                <span asp-validation-for="ge_data.createdDT" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.editedDT" class="control-label"></label>
+                <input asp-for="ge_data.editedDT" class="form-control" />
+                <span asp-validation-for="ge_data.editedDT" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_data.editedId" class="control-label"></label>
+                <select asp-for="ge_data.editedId" class ="form-control" asp-items="ViewBag.editedId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

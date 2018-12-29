@@ -1,0 +1,97 @@
+@page
+@model ge_repository.Pages.Project.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Index</h2>
+
+<form>
+   <p>
+        Search: <input type="text" name="pageFilter" value="@(Model.pageFilter)" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+</form>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model._ge_project[0].name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._ge_project[0].description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._ge_project[0].start_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._ge_project[0].pstatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._ge_project[0].office.name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+@foreach (var item in Model._ge_project) {
+        <tr>
+            <td>
+              <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.start_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pstatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.office.name)
+            </td>
+             <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                        <text> | </text>
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                        <text> | </text>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="../Data/Index" asp-route-pageProjectId="@item.Id">Data</a>
+                        <text> | </text>
+                <a asp-page="../UserOps/Index" asp-route-pageProjectId="@item.Id">UserOps</a> 
+            </td>
+        </tr>
+}
+  
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-pageOrder="@(Model.pageSort)"
+   asp-route-pageIndex="@(Model.pageIndex - 1)"
+   asp-route-pageSize="@(Model.pageSize)"
+   asp-route-pageFilter="@(Model.pageFilter)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-pageOrder="@(Model.pageSort)"
+   asp-route-pageIndex="@(Model.pageIndex + 1)"
+   asp-route-pageSize="@(Model.pageSize)"
+   asp-route-pageFilter="@(Model.pageFilter)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

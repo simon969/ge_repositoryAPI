@@ -1,0 +1,93 @@
+@page
+@model ge_repository.Pages.Data.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ge_data</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.data.filename)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.filename)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.data.filesize)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.filesize)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.data.filetype)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.filetype)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.data.filedate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.filedate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.data.description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.data.keywords)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.keywords)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.data.project.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.project.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.data.cstatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.cstatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.data.pstatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.pstatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.data.qstatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.data.qstatus)
+        </dd>
+        <partial name="_DetailsLocation"
+                    for="data"
+                    view-data="ViewData" />
+        <partial name="_DetailsBase"
+                    for="data"
+                    view-data="ViewData" />
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.data.Id">Edit</a>
+    @if (@Model.data.fileext == ".ags") {
+                <text> | </text>
+                <a asp-controller="ge_ags" asp-action="Get" asp-route-id=@Model.data.Id>Create XML</a>
+    }
+    @if (@Model.data.fileext == ".xml") {
+                <text> | </text>
+                <a asp-page="../Transform/Create" asp-route-id="@Model.data.project.Id">Create Transform</a>
+    }
+    | <a asp-page="./Index">Back to List</a>
+</div>

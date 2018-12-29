@@ -1,0 +1,72 @@
+@page
+@model ge_repository.Pages.UserOperations.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+@if (@Model.ge_office_user!=null) {
+
+<h4>ge_office_user</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ge_office_user.officeId" class="control-label"></label>
+                <select asp-for="ge_office_user.officeId" class ="form-control" asp-items="ViewBag.officeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_office_user.userId" class="control-label"></label>
+                <select asp-for="ge_office_user.userId" class ="form-control" asp-items="ViewBag.userId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_office_user.operations" class="control-label"></label>
+                <input asp-for="ge_office_user.operations" class="form-control" />
+                <span asp-validation-for="ge_office_user.operations" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+}
+
+@if (@Model.ge_project_user != null) {
+<h4>ge_project_user</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ge_project_user.projectId" class="control-label"></label>
+                <select asp-for="ge_project_user.projectId" class ="form-control" asp-items="ViewBag.projectId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_project_user.userId" class="control-label"></label>
+                <select asp-for="ge_project_user.userId" class ="form-control" asp-items="ViewBag.userId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ge_project_user.operations" class="control-label"></label>
+                <input asp-for="ge_project_user.operations" class="form-control" />
+                <span asp-validation-for="ge_project_user.operations" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+}
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,81 @@
+@page
+@model ge_repository.Pages.Transform.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+  <partial name="_PagingHeaderPartial" />
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.ge_transform[0].name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_transform[0].description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_transform[0].data.filename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_transform[0].style.filename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_transform[0].createdDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_transform[0].project.name)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.ge_transform[0].data.pstatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ge_transform) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.data.filename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.style.filename)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.createdDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.data.pstatus)
+            </td>
+            
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>|
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>|
+                <a asp-controller="ge_view" asp-action="Detail" asp-route-transformId="@item.Id">View</a>|
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+  <partial name="_PagingFooterPartial" />

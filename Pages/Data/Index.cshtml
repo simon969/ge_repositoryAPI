@@ -1,0 +1,115 @@
+@page
+@model ge_repository.Pages.Data.IndexModel
+
+@{
+    ViewData["Title"] = "Ground Engineering Data";
+}
+<h2>Index</h2>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Search: <input type="text" name="pageFilter" value="@(Model.pageFilter)" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+    @if (@Model.pageProjectId !=null) {
+        <p>
+        @Model._ge_data[0].project.name
+        <a asp-page="Create" asp-route-projectId="@Model.pageProjectId">Add Data</a>
+        </p>
+    }
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model._ge_data[0].filename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._ge_data[0].description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._ge_data[0].createdDT)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model._ge_data[0].filesize)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model._ge_data[0].pstatus)
+            </th>
+            </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model._ge_data) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.filename)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createdDT)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.filesize)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.pstatus)
+            </td>
+            <td> 
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                 <text> | </text>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> 
+                 <text> | </text>
+                <a asp-controller="ge_file" asp-action="Get" asp-route-id=@item.Id>Download</a>
+                 <text> | </text>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            @if (item.fileext == ".ags") {
+                <text> | </text>
+                <a asp-controller="ge_ags" asp-action="Get" asp-route-id=@item.Id>Create XML</a>
+            }
+             @if (item.fileext == ".xml") {
+                <text> | </text>
+                 <a asp-page="../Transform/Create" asp-route-id="@item.project.Id">Create Transform</a>
+            }
+            </td>
+        
+        </tr>
+    }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+    asp-route-pageOrder="@(Model.pageSort)"
+    asp-route-pageIndex="@(Model.pageIndex - 1)"
+    asp-route-pageSize="@(Model.pageSize)"
+    asp-route-pageFilter="@(Model.pageFilter)"
+    asp-route-pageOfficeId="@(Model.pageOfficeId)"
+    asp-route-pageProjectId="@(Model.pageProjectId)"
+    asp-route-pageUserId="@(Model.pageUserId)"
+    class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+    asp-route-pageOrder="@(Model.pageSort)"
+    asp-route-pageIndex="@(Model.pageIndex + 1)"
+    asp-route-pageSize="@(Model.pageSize)"
+    asp-route-pageFilter="@(Model.pageFilter)"
+    asp-route-pageOfficeId="@(Model.pageOfficeId)"
+    asp-route-pageProjectId="@(Model.pageProjectId)"
+    asp-route-pageUserId="@(Model.pageUserId)"
+    class="btn btn-default @nextDisabled">
+    Next
+</a>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

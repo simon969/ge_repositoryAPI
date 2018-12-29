@@ -1,0 +1,63 @@
+@page
+@model ge_repository.Pages.Data.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h2>Add Data</h2>
+<h2>
+    @ViewData["ProjectName"] 
+
+</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="data.Id" />
+            <input type="hidden" asp-for="data.projectId" />
+            <input type="hidden" asp-for="data.createdDT"/>
+            <input type="hidden" asp-for="data.createdId"/>
+            <input type="hidden" asp-for="data.editedDT"/>
+            <input type="hidden" asp-for="data.editedId"/> 
+            <partial name="_inputData"
+                    for="data"
+                    view-data="ViewData" />
+            <partial name="_inputLocation"
+                    for="data"
+                    view-data="ViewData" />
+            <div id="drop-area" class="form-group"
+                    ondragenter="event.stopPropagation(); event.preventDefault();" 
+                    ondragover="event.stopPropagation(); event.preventDefault();" 
+                    ondrop="event.stopPropagation(); event.preventDefault();dodrop(event);">
+                <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+                <div class="form-group">
+                    <label class="control-label">Selected Files</label>
+                    <ol id=selectedFiles></ol>
+                    <span asp-validation-for="uploadFiles" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="uploadFiles" class="control-label"></label>
+                    <input asp-for="uploadFiles" type="file" name=uploadFiles multiple class ="form-control" style="height:auto" onchange=updateSelectedFiles()/>
+                    <input type="hidden" asp-for="LastModifiedDates" />
+                    <span asp-validation-for="uploadFiles" class="text-danger"></span>
+                </div>              
+                </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+        
+    </div>
+</div>
+<iframe id=googlemap 
+src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=Malet%20St%2C%20London%20WC1E%207HU%2C%20United%20Kingdom+(Your%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed" 
+frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+</iframe>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+ 

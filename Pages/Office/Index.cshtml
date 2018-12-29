@@ -1,0 +1,135 @@
+@page
+@model ge_repository.Pages.Office.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<form>
+    <p>
+        Title: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].locName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].locAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].locPostcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].manager)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].locMapReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].locEast)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].locNorth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].createdDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].editedDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office[0].edited)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ge_office) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.locName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locPostcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.manager.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locMapReference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locEast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locNorth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createdId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createdDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.editedDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.edited.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="../Project/Index" asp-route-pageOfficeId="@item.Id">Projects</a> |
+                <a asp-page="../Data/Index" asp-route-pageOfficeId="@item.Id">Data</a> |
+                <a asp-page="../UserOperations/Index" asp-route-pageOfficeId="@item.Id">User Operations</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-pageOrder="@(Model.pageSort)"
+   asp-route-pageIndex="@(Model.pageIndex - 1)"
+   asp-route-pageSize="@(Model.pageSize)"
+   asp-route-pageFilter="@(Model.pageFilter)"
+    asp-route-pageOfficeId="@(Model.pageOfficeId)"
+    asp-route-pageProjectId="@(Model.pageProjectId)"
+    asp-route-pageUserId="@(Model.pageUserId)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-pageOrder="@(Model.pageSort)"
+   asp-route-pageIndex="@(Model.pageIndex + 1)"
+   asp-route-pageSize="@(Model.pageSize)"
+   asp-route-pageFilter="@(Model.pageFilter)"
+    asp-route-pageOfficeId="@(Model.pageOfficeId)"
+    asp-route-pageProjectId="@(Model.pageProjectId)"
+    asp-route-pageUserId="@(Model.pageUserId)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

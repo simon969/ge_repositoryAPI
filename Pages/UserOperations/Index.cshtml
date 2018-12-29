@@ -1,0 +1,105 @@
+@page
+@model ge_repository.Pages.UserOperations.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+ <form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Search: <input type="text" name="pageFilter" value="@(Model.pageFilter)" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+  
+</p>
+<h3>Office Operations Assigned</h3>
+<a asp-page="./Create" asp-route-officeId="@Model.pageOfficeId">Create New</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office_user[0].user.LastName),
+                @Html.DisplayNameFor(model => model.ge_office_user[0].user.FirstName)
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office_user[0].office.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_office_user[0].operations)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ge_office_user) {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.user.LastName),
+                @Html.DisplayFor(modelItem => item.user.FirstName)
+            </td>
+            <td></td>
+             <td>
+                @Html.DisplayFor(modelItem => item.office.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.operations)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<h3>Project Operations Assigned</h3>
+<a asp-page="./Create" asp-route-projectId="@Model.pageProjectId">Create New</a>
+<table class="table">
+    <thead>
+        <tr>
+             <th>
+                @Html.DisplayNameFor(model => model.ge_office_user[0].user.LastName),
+                @Html.DisplayNameFor(model => model.ge_office_user[0].user.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_project_user[0].project.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_project_user[0].project.office.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ge_project_user[0].operations)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ge_project_user) {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.user.LastName),
+                @Html.DisplayFor(modelItem => item.user.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.office.name)
+            </td>
+           <td>
+                @Html.DisplayFor(modelItem => item.operations)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
